@@ -6,6 +6,7 @@ package ems;
  * @shimaahamdy
  */
 public class ASSIGNMENT {
+    
     private int assigment_num;
     private int course_code; //realtion with course
     private String content;
@@ -34,6 +35,11 @@ public class ASSIGNMENT {
   {
       return this.assignment_exact_answer;
   }
+  
+ public int get_max_grade()
+ {
+     return this.max_grade;
+ }
     
     @Override
      public String toString()

@@ -10,15 +10,17 @@ package ems;
  * @author Leader
  */
 public class AssignmentSolution {
-    private int assignment_num; //realtion with assignment 
+    private int assignment_num; //realtion with assignment
+    private int course_code;
     private String answer;
     private int student_grade;
     private int student_id;   //realtion with student
     private String comment;
     
     
-    public AssignmentSolution(int assignment_num,String answer,int student_id)
+    public AssignmentSolution(int course_code,int assignment_num,String answer,int student_id)
     {
+        this.course_code=course_code;
         this.assignment_num=assignment_num;
         this.answer=answer;
         this.student_id=student_id;
@@ -36,12 +38,20 @@ public class AssignmentSolution {
     {
         return this.student_grade;
     }
+    public int get_assignment_num()
+    {
+        return this.assignment_num;
+    }
+    public int get_course_code()
+    {
+        return this.course_code;
+    }
     @Override
     public String toString()
     {
         String info = ("assignment num: "+this.assignment_num);
         info+= ("\nstudent id: "+this.student_id);
-        info+=("\nstudent name: "+System.student_list[this.student_id].getName());
+        info+=("\nstudent name: "+ systemControl.student_list.get(this.student_id).getName());
         info+=("\nthe grade is: "+this.student_grade);
         info+=("\nthe sloution:\n"+this.answer);
         info+=("\ndoctor's comment: "+this.comment);

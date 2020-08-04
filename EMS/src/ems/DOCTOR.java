@@ -23,7 +23,7 @@ public class DOCTOR {
         this.nationalNumber=nationalNumber;
         this.email=email;
         this.password=password;
-        this.iD=++System.docotors_num;
+        this.iD=systemControl.doctors_list.size()+1;
         
     }
    
@@ -58,7 +58,7 @@ public class DOCTOR {
     {
            
           courseList[course_counter]= new COURSE(courseName);
-          System.courses_list[System.course_num]=courseList[course_counter];
+          systemControl.courses_list.add(courseList[course_counter]);
           ++course_counter;
      }
     
@@ -68,7 +68,7 @@ public class DOCTOR {
     }
     public void create_assignment (int assignment_num,int course_code,String content,int max_grade)
     {
-        System.courses_list[course_code].add_assignment(new ASSIGNMENT(assignment_num,course_code,content,max_grade));
+        systemControl.courses_list.get(course_code).add_assignment(new ASSIGNMENT(assignment_num,course_code,content,max_grade));
     }
     
     

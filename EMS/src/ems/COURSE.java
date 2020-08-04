@@ -28,7 +28,7 @@ public class COURSE {
     COURSE(String name)
     {
         this.name=name;
-        this.code=System.course_num++;
+        this.code=systemControl.courses_list.size();
     }
     public ASSIGNMENT get_assignment(int assignment_num)
     {
@@ -38,14 +38,17 @@ public class COURSE {
     public void addTAS(int id)
     {
         this.TAS_list_ID[TAS_counter++]=id;
-        System.TAS_list[id].add_course(this.code);
+        systemControl.TAS_list.get(id).add_course(this.code);
     }
    
     public void add_assignment(ASSIGNMENT assignment)
     {
         this.assignment_list[this.assignment_num++]=assignment;
     }
-    
+    public int get_assignment_num()
+    {
+        return this.assignment_num;
+    }
     public void add_student(STUDENT student)
     {
         this.student_list[this.student_num++]=student;
