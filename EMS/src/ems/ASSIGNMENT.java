@@ -27,6 +27,11 @@ public class ASSIGNMENT {
     {
         this.solutions_list[this.solutions_num++]=solution;
     }
+    
+    public int get_assignment_num()
+    {
+        return this.assigment_num;
+    }
   public void set_assignment_exact_answer(String assignment_exact_answer)
   {
       this.assignment_exact_answer=assignment_exact_answer;
@@ -34,6 +39,11 @@ public class ASSIGNMENT {
   public String get_assignment_solution()
   {
       return this.assignment_exact_answer;
+  }
+  
+  public int get_course_code()
+  {
+      return this.course_code;
   }
   
  public int get_max_grade()

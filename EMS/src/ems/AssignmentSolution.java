@@ -10,12 +10,12 @@ package ems;
  * @author Leader
  */
 public class AssignmentSolution {
-    private int assignment_num; //realtion with assignment
-    private int course_code;
+    private ASSIGNMENT assignment; //realtion with assignment
     private String answer;
     private int student_grade;
     private int student_id;   //realtion with student
     private String comment;
+    private boolean grade_seted;
     
     
     public AssignmentSolution(int course_code,int assignment_num,String answer,int student_id)
@@ -26,9 +26,18 @@ public class AssignmentSolution {
         this.student_id=student_id;
     }
     
+    public ASSIGNMENT get_assignment()
+    {
+        return this.assignment;
+    }
+    public boolean is_grade_set()
+    {
+        return this.grade_seted;
+    }
     public void set_student_grade(int student_grade)
     {
         this.student_grade=student_grade;
+        this.grade_seted=true;
     }
     public void set_comment(String comment)
     {
@@ -38,14 +47,8 @@ public class AssignmentSolution {
     {
         return this.student_grade;
     }
-    public int get_assignment_num()
-    {
-        return this.assignment_num;
-    }
-    public int get_course_code()
-    {
-        return this.course_code;
-    }
+    
+   
     @Override
     public String toString()
     {

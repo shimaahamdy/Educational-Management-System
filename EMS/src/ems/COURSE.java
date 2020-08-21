@@ -30,9 +30,22 @@ public class COURSE {
         this.name=name;
         this.code=systemControl.courses_list.size();
     }
+    public ASSIGNMENT [] get_assignment_list()
+    {
+        return this.assignment_list;
+    }
+    public int get_code()
+    {
+        return this.code;
+    }
     public ASSIGNMENT get_assignment(int assignment_num)
     {
         return this.assignment_list[assignment_num];
+    }
+    
+    public String get_doctor_name()
+    {
+        return systemControl.doctors_list.get(this.doctor_id).getName();
     }
     
     public void addTAS(int id)
@@ -52,6 +65,10 @@ public class COURSE {
     public void add_student(STUDENT student)
     {
         this.student_list[this.student_num++]=student;
+    }
+    public int get_student_num()
+    {
+        return this.student_num;
     }
     @Override
     public String toString()

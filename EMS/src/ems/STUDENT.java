@@ -10,6 +10,8 @@ package ems;
  * @author Leader
  */
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class STUDENT {
     private String name;
@@ -21,6 +23,7 @@ public class STUDENT {
     private int courses_num;
     private AssignmentSolution []solutions_list;  //realtion with assignment solution
     private int solutions_num;
+  
  
     
     
@@ -43,32 +46,62 @@ public class STUDENT {
     {
         return this.name;
     }
+    public int get_courses_num()
+    {
+        return this.courses_num;
+    }
+    public int[] get_courses_id_list()
+    {
+        return this.courses_id_list;
+    }
+     public boolean is_owner(String password)
+     {
+        return(this.password.equals(password));
+     }
      public ArrayList<gradesStatics> grades_statics()
      {
          ArrayList<gradesStatics> student_statics = new ArrayList<>();
-         for(int num : this.courses_id_list)
+         Map<Integer,String> code_information=new HashMap<>();
+         Map<Integer,Integer> grades=new HashMap<>();
+         Map<Integer,Integer> total=new HashMap<>();
+         Map<Integer,Integer> submitted_assignments=new HashMap<>();
+         for(AssignmentSolution sol:this.solutions_list)
          {
-             String info=systemControl.courses_list.get(num).toString();
-             int grades=0;
-             int total=0;
-             int submitted_ass=0;
-           for(int ass=0;ass<systemControl.courses_list.get(num).get_assignment_num();++ass)
-           {
-               total+=systemControl.courses_list.get(num).get_assignment(ass).get_max_grade();
-           }
-          for(AssignmentSolution sol:this.solutions_list)
+             int code = sol.get_assignment().get_course_code();
+             code_information.put(code, systemControl.courses_list.get(code).toString());
+             grades.put(code,grades.get(code)+sol.get_student_grade());
+             total.put(code, total.get(code)+sol.get_assignment().get_max_grade());
+             submitted_assignments.put(code, submitted_assignments.get(code)+1);
+         }
+         
+         for (Map.Entry<Integer,Integer> entry : grades.entrySet()) 
          {
-             if(num==sol.get_course_code())
-             {
-                 grades+=sol.get_student_grade();
-                 submitted_ass++;
-             }
+             int code = entry.getKey();
+             gradesStatics grade_static = new gradesStatics(code_information.get(code),submitted_assignments.get(code),grades.get(code),total.get(code));
+             student_statics.add(grade_static); 
          }
-          gradesStatics grade_static = new gradesStatics(info,submitted_ass,grades,total);
-          student_statics.add(grade_static);
-         }
+        
          return student_statics;
          
+     }
+     public AssignmentSolution get_assignment_solution(int assignment_num)
+     {
+         for(AssignmentSolution sol:this.solutions_list)
+         {
+             if(assignment_num==sol.get_assignment().get_assignment_num())
+                 return sol;
+         }
+         return null;
+     }
+     public String get_name()
+     {
+         return this.name;
+     }
+    @Override
+     public String toString ()
+     {
+         return ("student name: "+this.fullName+"\nstudent ID: "+this.ID+"number of registerd courses: "
+                 + this.courses_num+"\n");
      }
      
      
