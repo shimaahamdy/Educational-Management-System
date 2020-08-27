@@ -1,6 +1,8 @@
 
 package ems;
 
+import java.util.ArrayList;
+
 /**
  *
  * @shimaahamdy
@@ -12,12 +14,12 @@ public class ASSIGNMENT {
     private String content;
     private int max_grade;
     private String assignment_exact_answer;
-    private AssignmentSolution []solutions_list;  //relation with solutions
-    private int solutions_num;
+    private ArrayList<AssignmentSolution>solutions_list;
+   
     
     ASSIGNMENT (int assignment_num,int course_code,String content,int max_grade)
     {
-        this.assigment_num=assignment_num;
+        this.solutions_list=new ArrayList<>();
         this.course_code=course_code;
         this.content=content;
         this.max_grade=max_grade;
@@ -25,7 +27,7 @@ public class ASSIGNMENT {
     
     public void add_assignment_solution(AssignmentSolution solution)
     {
-        this.solutions_list[this.solutions_num++]=solution;
+        this.solutions_list.add(solution);
     }
     
     public int get_assignment_num()
@@ -40,7 +42,10 @@ public class ASSIGNMENT {
   {
       return this.assignment_exact_answer;
   }
-  
+   public ArrayList<AssignmentSolution> get_assignment_solutions_list()
+  {
+      return this.solutions_list;
+  }
   public int get_course_code()
   {
       return this.course_code;

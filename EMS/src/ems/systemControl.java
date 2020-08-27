@@ -14,29 +14,29 @@ public class systemControl {
     public static ArrayList <DOCTOR> doctors_list = new ArrayList<>();
     public static ArrayList <COURSE> courses_list = new ArrayList<>();
     public static ArrayList <TAS> TAS_list = new ArrayList<>();
-    public static ArrayList <STUDENT> student_list = new ArrayList<>();
+    public static ArrayList <STUDENT> students_list = new ArrayList<>();
     
   
     /*           studnt manager */
     public static STUDENT get_student(int student_id)
     {
-        return systemControl.student_list.get(student_id);
+        return systemControl.students_list.get(student_id);
     }
     
     public static STUDENT get_user_student(int student_id,String passowrd)
     {
-        if (systemControl.student_list.get(student_id).is_owner(passowrd))
+        if (systemControl.students_list.get(student_id).is_owner(passowrd))
             return get_student(student_id);
         else return null;
     }
     public static int get_total_system_students()
     {
-        return systemControl.student_list.size();
+        return systemControl.students_list.size();
     }
     
     public static void show_students()
     {
-        for(STUDENT student:systemControl.student_list)
+        for(STUDENT student:systemControl.students_list)
         {
             System.out.print(student.toString());
             if(student.get_courses_num()!=0)
@@ -57,7 +57,7 @@ public class systemControl {
         return systemControl.courses_list.get(course_code).get_student_num();
     }
     
-    public static ArrayList <COURSE>get_courses_not_registerd(int []courses_registerd)
+    public static ArrayList <COURSE>get_courses_not_registerd(ArrayList<Integer>courses_registerd)
     {   
            ArrayList <COURSE> courses_not_registerd = new ArrayList<>();
        
@@ -78,6 +78,20 @@ public class systemControl {
         }
         return courses_not_registerd;
     }
+    
+    //////////////////// docotr manager /////////////////////////
+     public static DOCTOR get_doctor(int doctor_id)
+    {
+        return systemControl.doctors_list.get(doctor_id);
+    }
+    
+    public static DOCTOR get_user_doctor(int doctor_id,String passowrd)
+    {
+        if (systemControl.doctors_list.get(doctor_id).is_owner(passowrd))
+            return get_doctor(doctor_id);
+        else return null;
+    }
+    
 }
     
 

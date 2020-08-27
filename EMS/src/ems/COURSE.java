@@ -5,30 +5,27 @@
  */
 package ems;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Leader
  */
 public class COURSE {
     private String name;
-    private int code;
-    private int student_num;
-    private STUDENT[]student_list;          // realtion with student
+    private int code;        
+    ArrayList<STUDENT> student_list;
     private int  doctor_id;                //realtion with doctor
-    private int []TAS_list_ID;             //realtion with techinacal assistant
-    private int TAS_counter;
+    ArrayList<TAS>TAS_list;
     private int assignment_num;
     private ASSIGNMENT []assignment_list;   //realtion with assignments
-    
-    
-    {
-        this.TAS_list_ID = new int [10];
-    }
     
     COURSE(String name)
     {
         this.name=name;
         this.code=systemControl.courses_list.size();
+        student_list=new ArrayList<>();
+        TAS_list=new ArrayList<>();
     }
     public ASSIGNMENT [] get_assignment_list()
     {
@@ -45,13 +42,18 @@ public class COURSE {
     
     public String get_doctor_name()
     {
-        return systemControl.doctors_list.get(this.doctor_id).getName();
+        return systemControl.doctors_list.get(this.doctor_id).get_name();
     }
     
-    public void addTAS(int id)
+    public boolean addTAS(int tas)
     {
-        this.TAS_list_ID[TAS_counter++]=id;
-        systemControl.TAS_list.get(id).add_course(this.code);
+        if(tas<systemControl.TAS_list.size() && tas>=systemControl.TAS_list.size())
+        {
+        this.TAS_list.add(systemControl.TAS_list.get(tas));
+        systemControl.TAS_list.get(tas).add_course(this.code);
+        return true;
+        }
+        else return false;
     }
    
     public void add_assignment(ASSIGNMENT assignment)
@@ -64,11 +66,11 @@ public class COURSE {
     }
     public void add_student(STUDENT student)
     {
-        this.student_list[this.student_num++]=student;
+        this.student_list.add(student);
     }
     public int get_student_num()
     {
-        return this.student_num;
+        return this.student_list.size();
     }
     @Override
     public String toString()

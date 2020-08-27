@@ -18,10 +18,8 @@ public class AssignmentSolution {
     private boolean grade_seted;
     
     
-    public AssignmentSolution(int course_code,int assignment_num,String answer,int student_id)
+    public AssignmentSolution(String answer,int student_id)
     {
-        this.course_code=course_code;
-        this.assignment_num=assignment_num;
         this.answer=answer;
         this.student_id=student_id;
     }
@@ -52,9 +50,9 @@ public class AssignmentSolution {
     @Override
     public String toString()
     {
-        String info = ("assignment num: "+this.assignment_num);
+        String info = ("assignment num: "+this.assignment.get_assignment_num());
         info+= ("\nstudent id: "+this.student_id);
-        info+=("\nstudent name: "+ systemControl.student_list.get(this.student_id).getName());
+        info+=("\nstudent name: "+ systemControl.students_list.get(this.student_id).getName());
         info+=("\nthe grade is: "+this.student_grade);
         info+=("\nthe sloution:\n"+this.answer);
         info+=("\ndoctor's comment: "+this.comment);

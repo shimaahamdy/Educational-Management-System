@@ -21,6 +21,10 @@ public class TAS {
     {
         return this.password;
     }
+    public int get_ID()
+    {
+        return this.ID;
+    }
      public String getName()
     {
         return this.name;

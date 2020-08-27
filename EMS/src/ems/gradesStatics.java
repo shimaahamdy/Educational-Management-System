@@ -39,4 +39,20 @@ public class gradesStatics {
      {
          this.total_grades_sum=total;
      }
+    public String get_course_information()
+    {
+        return this.course_Information;
+    }
+    public int get_submitted_assignments()
+    {
+        return this.submitted_asignments;
+    }
+    public int get_total_grades()
+    {
+        return this.total_grades_sum;
+    }
+    public int get_student_grades_sum()
+    {
+        return this.student_grades_sum;
+    }
 }

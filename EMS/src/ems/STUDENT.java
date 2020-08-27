@@ -19,8 +19,7 @@ public class STUDENT {
     private String password;
     private String email;
     private String fullName;
-    private int []courses_id_list; // realtion with courses
-    private int courses_num;
+    public  ArrayList <Integer> courses_id_list = new ArrayList<>();
     private AssignmentSolution []solutions_list;  //realtion with assignment solution
     private int solutions_num;
   
@@ -30,11 +29,21 @@ public class STUDENT {
     public void register_in_course(int course_code)
     {
         systemControl.courses_list.get(course_code).add_student(this);
-        this.courses_id_list[this.courses_num++]=course_code;
+        this.courses_id_list.add(course_code);
+    }
+    public void unregister_from_course(COURSE course)
+    {
+        systemControl.courses_list.remove(course.get_code());
+        for(int i=0;i<this.courses_id_list.size();++i)
+        {
+            if(this.courses_id_list.get(i)==course.get_code())
+            this.courses_id_list.remove(i);
+        }
     }
     public void subimt_assignmet_solution(int course_code,int assignment_num,String answer)
     {
-        AssignmentSolution solution=new AssignmentSolution(course_code,assignment_num,answer,this.ID);
+        
+        AssignmentSolution solution=new AssignmentSolution(answer,this.ID);
         systemControl.courses_list.get(course_code).get_assignment(assignment_num).add_assignment_solution(solution);
         this.solutions_list[this.solutions_num++]=solution;
     }
@@ -48,9 +57,9 @@ public class STUDENT {
     }
     public int get_courses_num()
     {
-        return this.courses_num;
+        return this.courses_id_list.size();
     }
-    public int[] get_courses_id_list()
+    public ArrayList<Integer> get_courses_id_list()
     {
         return this.courses_id_list;
     }
@@ -101,7 +110,7 @@ public class STUDENT {
      public String toString ()
      {
          return ("student name: "+this.fullName+"\nstudent ID: "+this.ID+"number of registerd courses: "
-                 + this.courses_num+"\n");
+                 + this.get_courses_num()+"\n");
      }
      
      
