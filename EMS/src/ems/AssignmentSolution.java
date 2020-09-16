@@ -45,7 +45,10 @@ public class AssignmentSolution {
     {
         return this.student_grade;
     }
-    
+    public String get_student_name()
+    {
+        return systemControl.students_list.get(this.student_id).getName();
+    }
    
     @Override
     public String toString()
