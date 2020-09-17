@@ -13,17 +13,19 @@ import java.util.ArrayList;
  */
 public class COURSE {
     private String name;
-    private int code;        
+    private String code;
+    private final int number;        
     ArrayList<STUDENT> student_list;
     private int  doctor_id;                //realtion with doctor
     ArrayList<TAS>TAS_list;
     private int assignment_num;
     private ASSIGNMENT []assignment_list;   //realtion with assignments
     
-    COURSE(String name)
+    public COURSE(String name,String code)
     {
         this.name=name;
-        this.code=systemControl.courses_list.size();
+        this.code=code;
+        this.number=systemControl.courses_list.size();
         student_list=new ArrayList<>();
         TAS_list=new ArrayList<>();
     }
@@ -31,9 +33,9 @@ public class COURSE {
     {
         return this.assignment_list;
     }
-    public int get_code()
+    public int get_course_number()
     {
-        return this.code;
+        return this.number;
     }
     public ASSIGNMENT get_assignment(int assignment_num)
     {
@@ -50,7 +52,7 @@ public class COURSE {
         if(tas<systemControl.TAS_list.size() && tas>=systemControl.TAS_list.size())
         {
         this.TAS_list.add(systemControl.TAS_list.get(tas));
-        systemControl.TAS_list.get(tas).add_course(this.code);
+        systemControl.TAS_list.get(tas).add_course(this.number);
         return true;
         }
         else return false;
@@ -75,7 +77,7 @@ public class COURSE {
     @Override
     public String toString()
     {
-        return ("Course "+ name+"  -   Code "+code);
+        return ("Course "+ this.name+"  -   Code "+this.code);
     }
     
     

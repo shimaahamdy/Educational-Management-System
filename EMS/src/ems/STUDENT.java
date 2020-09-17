@@ -57,10 +57,10 @@ public class STUDENT {
     }
     public void unregister_from_course(COURSE course)
     {
-        systemControl.courses_list.remove(course.get_code());
+        systemControl.courses_list.remove(course.get_course_number());
         for(int i=0;i<this.courses_id_list.size();++i)
         {
-            if(this.courses_id_list.get(i)==course.get_code())
+            if(this.courses_id_list.get(i)==course.get_course_number())
             this.courses_id_list.remove(i);
         }
     }
@@ -79,6 +79,10 @@ public class STUDENT {
     {
         return this.first_name;
     }
+     public int get_id()
+     {
+         return this.ID;
+     }
     public int get_courses_num()
     {
         return this.courses_id_list.size();

@@ -64,8 +64,10 @@ public class DOCFLOW {
         System.out.println("enter course name");
         // take input 
         String course_name="";
-        int course_code=current_doctor.createCourse(course_name);
-        System.out.println("course code id"+course_code);
+        System.out.println("enter course code");
+        String course_code="";
+        current_doctor.createCourse(course_name,course_code);
+        
     }
     private static void  list_courses()
     {
@@ -141,7 +143,7 @@ public class DOCFLOW {
      }
      private static void list_assignments()
      {
-         System.out.print("list of course "+current_course.get_code()+" assignments: ");
+         System.out.print("list of course "+current_course.get_course_number()+" assignments: ");
          int choice_number=0;
          for(ASSIGNMENT assignment:current_course.get_assignment_list())
          {
@@ -157,7 +159,7 @@ public class DOCFLOW {
          String assignment_content="";
          int assignment_code=0;
          int max_grade=0;
-         current_doctor.create_assignment(assignment_code, current_course.get_code(), assignment_content, max_grade);
+         current_doctor.create_assignment(assignment_code, current_course.get_course_number(), assignment_content, max_grade);
          System.out.print("assignment has been added successfuly");
      }
      private static void view_assignemnt()

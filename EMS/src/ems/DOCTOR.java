@@ -8,23 +8,23 @@ import java.util.ArrayList;
  * @author Leader
  */
 public class DOCTOR {
-    private final String name;
+    private  String name;
     private final int iD;
-    private final int nationalNumber;
     private String email;
     private String password;
     private ArrayList<COURSE> courses_list; 
     
     
-    DOCTOR(String name,int nationalNumber,String email,String password)
+    DOCTOR()
     {
         this.courses_list = new ArrayList<>();
-        this.name=name;
-        this.nationalNumber=nationalNumber;
-        this.email=email;
-        this.password=password;
-        this.iD=systemControl.doctors_list.size()+1;
+        this.iD=systemControl.doctors_list.size();
+        systemControl.doctors_list.add(this);
         
+    }
+    public void set_name(String name)
+    {
+        this.name=name;
     }
     public ArrayList<COURSE> get_courses_list()
     {
@@ -33,6 +33,10 @@ public class DOCTOR {
     public int get_courses_num()
     {
         return this.courses_list.size();
+    }
+    public int get_id()
+    {
+        return this.iD;
     }
    
     public void set_email(String email)
@@ -62,12 +66,12 @@ public class DOCTOR {
     {
         return this.iD;
     }
-    public int createCourse(String courseName)
+    public void createCourse(String courseName,String code)
     {
-           COURSE course=new COURSE(courseName);
+           COURSE course=new COURSE(courseName,code);
           this.courses_list.add(course);
           systemControl.courses_list.add(course);
-          return systemControl.courses_list.size()-1;
+       
      }
      public boolean is_owner(String password)
      {

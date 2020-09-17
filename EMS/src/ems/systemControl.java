@@ -19,6 +19,16 @@ public class systemControl {
     private static Random rand = new Random();
     
     
+    
+    public static void run()
+    {
+        add_doctors_dummy_data();
+        add_student_dummy_data();
+        
+        System.out.println("please make a choice\n1- Login/n2- Sign up\n3- shut down system");
+        System.out.print("enter your choice: ");
+        // take input 
+    }
   
     /*           studnt manager */
     public static STUDENT get_student(int student_id)
@@ -51,14 +61,19 @@ public class systemControl {
         }
     }
     
-    public static void add_student_dummy_data()
+    private static void add_student_dummy_data()
     {
         String names[]={ "Ali", "Mostafa", "Hani", "Mohamed", "Ashraf", "Samy", "Morad", "Sayed", "Hussien" };
+       
         for(int i=0;i<30;++i)
         {
             STUDENT student = new STUDENT();
             student.set_name(names[rand.nextInt(names.length)]);
             student.set_last_name(names[rand.nextInt(names.length)]);
+            student.set_email(student.getName()+"@gmail.com");
+            student.set_password("s"+student.get_id());
+            student.register_in_course(rand.nextInt(10));
+            
         }
     }
     
@@ -80,7 +95,7 @@ public class systemControl {
             boolean is_registerd=false;
             for(int registerd_course:courses_registerd)
             {
-                if(course.get_code()==registerd_course)
+                if(course.get_course_number()==registerd_course)
                 {
                     is_registerd=true;
                     break;
@@ -93,6 +108,8 @@ public class systemControl {
         return courses_not_registerd;
     }
     
+   
+    
     //////////////////// docotr manager /////////////////////////
      public static DOCTOR get_doctor(int doctor_id)
     {
@@ -104,6 +121,22 @@ public class systemControl {
         if (systemControl.doctors_list.get(doctor_id).is_owner(passowrd))
             return get_doctor(doctor_id);
         else return null;
+    }
+    private static void add_doctors_dummy_data()
+    {
+        String names[]={ "Ali", "Mostafa", "Hani", "Mohamed", "Ashraf", "Samy", "Morad", "Sayed", "Hussien" };
+        String course_name[]={"prog1","prog2","circits1","circuits2","opp","design patters","algorithms","data structure","computer organziation","advanced algorithms"};
+        String course_code[]={"CS111","CS123","CS122","CS333","CS133","CS240","CS350","CS344","CE244","CS254"};
+        for(int i=0,j=0;i<5;++i,j++)
+        {
+            DOCTOR doctor = new DOCTOR();
+            doctor.createCourse(course_name[j], course_code[j]);
+            j++;
+            doctor.createCourse(course_name[j], course_code[j]);
+            doctor.set_name(names[rand.nextInt(names.length)]);
+            doctor.set_email(doctor.get_name()+"@gmail.com");
+            doctor.set_password("d"+doctor.get_id());
+        }
     }
     
 }

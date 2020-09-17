@@ -77,7 +77,7 @@ public class studentFlow {
         System.out.print("enter course number to be registerd: ");
         // take input
         int choice=0;
-        current_student.register_in_course(courses_not_registerd.get(choice).get_code());
+        current_student.register_in_course(courses_not_registerd.get(choice).get_course_number());
         System.out.println("\nRegistered Successfully");
     }
     
@@ -161,7 +161,7 @@ public class studentFlow {
        System.out.print("\nenter your solution: ");
        //take input 
        String solution="";
-       current_student.subimt_assignmet_solution(current_course.get_code(), assignment_number, solution);
+       current_student.subimt_assignmet_solution(current_course.get_course_number(), assignment_number, solution);
        System.out.print("submitted sucessfuly");
    }
    private static void grades_report()
