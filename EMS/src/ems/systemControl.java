@@ -10,11 +10,14 @@ package ems;
  * @author Leader Shop
  */
 import java.util.ArrayList;
+import java.util.Random;
 public class systemControl {
     public static ArrayList <DOCTOR> doctors_list = new ArrayList<>();
     public static ArrayList <COURSE> courses_list = new ArrayList<>();
     public static ArrayList <TAS> TAS_list = new ArrayList<>();
     public static ArrayList <STUDENT> students_list = new ArrayList<>();
+    private static Random rand = new Random();
+    
     
   
     /*           studnt manager */
@@ -45,6 +48,17 @@ public class systemControl {
                 {
                     System.out.println(systemControl.courses_list.get(course_code).toString());
                 }
+        }
+    }
+    
+    public static void add_student_dummy_data()
+    {
+        String names[]={ "Ali", "Mostafa", "Hani", "Mohamed", "Ashraf", "Samy", "Morad", "Sayed", "Hussien" };
+        for(int i=0;i<30;++i)
+        {
+            STUDENT student = new STUDENT();
+            student.set_name(names[rand.nextInt(names.length)]);
+            student.set_last_name(names[rand.nextInt(names.length)]);
         }
     }
     

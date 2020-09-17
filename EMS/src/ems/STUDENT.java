@@ -14,17 +14,41 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class STUDENT {
-    private String name;
-    private int ID;
+    private String first_name;
+    private final int ID;
     private String password;
     private String email;
-    private String fullName;
-    public  ArrayList <Integer> courses_id_list = new ArrayList<>();
-    private AssignmentSolution []solutions_list;  //realtion with assignment solution
-    private int solutions_num;
+    private String last_name;
+    private  ArrayList <Integer> courses_id_list = new ArrayList<>();
+    private ArrayList<AssignmentSolution>solutions_list = new ArrayList<>();  //realtion with assignment solution
   
- 
     
+    public STUDENT()
+            {
+                this.ID=systemControl.students_list.size();
+                systemControl.students_list.add(this);
+            }
+    
+    public void set_name(String name)
+    {
+        this.first_name=name;
+    }
+    public void set_password(String password)
+    {
+        this.password=password;
+    }
+    public void set_email(String email)
+    {
+        // to be implemented 
+        /*
+        is_vaild_mail();
+        */
+        this.email=email;
+    }
+    public void set_last_name(String name)
+    {
+        this.last_name=name;
+    }
     
     public void register_in_course(int course_code)
     {
@@ -45,7 +69,7 @@ public class STUDENT {
         
         AssignmentSolution solution=new AssignmentSolution(answer,this.ID);
         systemControl.courses_list.get(course_code).get_assignment(assignment_num).add_assignment_solution(solution);
-        this.solutions_list[this.solutions_num++]=solution;
+        this.solutions_list.add(solution);
     }
     public String getPassword()
     {
@@ -53,7 +77,7 @@ public class STUDENT {
     }
      public String getName()
     {
-        return this.name;
+        return this.first_name;
     }
     public int get_courses_num()
     {
@@ -104,12 +128,12 @@ public class STUDENT {
      }
      public String get_name()
      {
-         return this.name;
+         return this.first_name;
      }
     @Override
      public String toString ()
      {
-         return ("student name: "+this.fullName+"\nstudent ID: "+this.ID+"number of registerd courses: "
+         return ("student name: "+this.first_name+" "+this.last_name+"\nstudent ID: "+this.ID+"number of registerd courses: "
                  + this.get_courses_num()+"\n");
      }
      
