@@ -28,6 +28,73 @@ public class systemControl {
         System.out.println("please make a choice\n1- Login/n2- Sign up\n3- shut down system");
         System.out.print("enter your choice: ");
         // take input 
+         int choice=0;
+        outer:
+        while(true)
+        {
+            switch(choice)
+            {
+                case 1:
+                    login();
+                    break;
+                case 2:
+                    sign_up();
+                    break;
+                case 3:
+                    break;
+                default:
+                    System.exit(0);
+             }
+        }
+        
+    }
+    
+    private static void login()
+    {
+        System.out.print("eneter your id: ");
+        // take input
+        String id="";
+        System.out.print("enter your password");
+        String password="";
+        int real_id=get_user_id(id);
+        if(id.charAt(0)=='S' && studentFlow.is_vaild_student(real_id, password))
+            studentFlow.student_in(real_id, password);
+        else if(id.charAt(0)=='D' && DOCFLOW.is_vaild_docotor(real_id, password))
+            DOCFLOW.docotor_in(real_id, password);
+        else 
+        {
+            System.out.print("ERROR: Invalid login data...Try again\n");
+            login();
+        }
+                
+                
+        
+        
+                
+       
+    }
+    private static int get_user_id(String id)
+    {
+        /* hash function to user id
+        ex--> S1301981500  -->S represent type 
+                           -->13 01 98 --> date of joining
+                           -->1500 reprsent real id
+                      
+        */
+        
+        return Integer.parseInt(id.substring(7,id.length()));
+    }
+    
+    private static void sign_up()
+    {
+        System.out.println("sign up is vaild only for students if your are doctor contact with DIS");
+        System.out.print("enter 0 for back or 1 to continue");
+        // take input 
+        int choice=0;
+        if(choice==1)
+        {
+            System.out.print("enter ");
+        }
     }
   
     /*           studnt manager */

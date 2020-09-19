@@ -28,6 +28,10 @@ public class studentFlow {
         
         show_main_menu();
     }
+    public static void sign_up()
+    {
+        
+    }
     
     private static void show_main_menu()
     {
