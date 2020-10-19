@@ -11,12 +11,14 @@ package ems;
  */
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 public class systemControl {
     public static ArrayList <DOCTOR> doctors_list = new ArrayList<>();
     public static ArrayList <COURSE> courses_list = new ArrayList<>();
     public static ArrayList <TAS> TAS_list = new ArrayList<>();
     public static ArrayList <STUDENT> students_list = new ArrayList<>();
     private static Random rand = new Random();
+    private static Scanner scan= new Scanner(System.in);
     
     
     
@@ -27,8 +29,7 @@ public class systemControl {
         
         System.out.println("please make a choice\n1- Login/n2- Sign up\n3- shut down system");
         System.out.print("enter your choice: ");
-        // take input 
-         int choice=0;
+         int choice=scan.nextInt();
         outer:
         while(true)
         {
@@ -52,10 +53,9 @@ public class systemControl {
     private static void login()
     {
         System.out.print("eneter your id: ");
-        // take input
-        String id="";
+        String id=scan.next();
         System.out.print("enter your password");
-        String password="";
+        String password=scan.next();
         int real_id=get_user_id(id);
         if(id.charAt(0)=='S' && studentFlow.is_vaild_student(real_id, password))
             studentFlow.student_in(real_id, password);
@@ -89,8 +89,7 @@ public class systemControl {
     {
         System.out.println("sign up is vaild only for students if your are doctor contact with DIS");
         System.out.print("enter 0 for back or 1 to continue");
-        // take input 
-        int choice=0;
+         int choice=scan.nextInt();
         if(choice==1)
         {
             System.out.print("enter ");
