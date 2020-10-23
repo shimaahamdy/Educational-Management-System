@@ -30,6 +30,7 @@ public class COURSE {
         this.number=systemControl.courses_list.size();   // automatic generation 
         student_list=new ArrayList<>();
         TAS_list=new ArrayList<>();
+        systemControl.courses_list.add(this);
     }
     /*return assignments of this course */
     public ArrayList<ASSIGNMENT> get_assignment_list()
